@@ -168,6 +168,7 @@ public:
             m.pose.position.x = leg_cluster_positions.poses[i].position.x;
             m.pose.position.y = leg_cluster_positions.poses[i].position.y;
             m.pose.position.z = 0.1;
+            m.pose.orientation.w = 1.0;
             m.scale.x = .2;
             m.scale.y = .2;
             m.scale.z = .2;

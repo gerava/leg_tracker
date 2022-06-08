@@ -1,4 +1,4 @@
-#!/usr/bin/python
+#!/usr/bin/python3
 
 import rospy
 from leg_tracker.msg import Person, PersonArray, Leg, LegArray
@@ -441,6 +441,7 @@ class KalmanMultiTracker:
                     marker.scale.y = 0.05
                     marker.scale.z = 0.2
                     marker.pose.position.z = 0.15
+                    marker.pose.orientation.w=1.0
                     self.marker_pub.publish(marker)
 
                     # # Publish a marker showing distance travelled:
@@ -574,6 +575,7 @@ class KalmanMultiTracker:
                     marker.text = str(person.id_num)
                     marker.scale.z = 0.2         
                     marker.pose.position.z = 1.7
+                    marker.pose.orientation.w=1.0
                     self.marker_pub.publish(marker)                          
 
         # Clear previously published people markers

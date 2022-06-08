@@ -1,4 +1,4 @@
-#!/usr/bin/python
+#!/usr/bin/python3
 
 import rospy
 
@@ -198,7 +198,7 @@ class KalmanMultiTracker:
 
         # ROS subscribers         
         self.detected_clusters_sub = rospy.Subscriber('detected_leg_clusters', LegArray, self.detected_clusters_callback)      
-        self.local_map_sub = rospy.Subscriber('local_map', OccupancyGrid, self.local_map_callback)
+        self.local_map_sub = rospy.Subscriber('map', OccupancyGrid, self.local_map_callback)
 
         rospy.spin() # So the node doesn't immediately shut down
                     
@@ -555,6 +555,7 @@ class KalmanMultiTracker:
                     marker.scale.y = 0.05
                     marker.scale.z = 0.2
                     marker.pose.position.z = 0.15
+                    marker.pose.orientation.w=1.0
                     self.marker_pub.publish(marker)
 
                     # # Publish a marker showing distance travelled:
@@ -651,6 +652,9 @@ class KalmanMultiTracker:
                         new_person.pose.orientation.y = quaternion[1]
                         new_person.pose.orientation.z = quaternion[2]
                         new_person.pose.orientation.w = quaternion[3] 
+                        new_person.velocity.x = person.vel_x
+                        new_person.velocity.y = person.vel_y
+                        new_person.velocity.z = 0.0
                         new_person.id = person.id_num 
                         people_tracked_msg.people.append(new_person)
 
@@ -673,6 +677,7 @@ class KalmanMultiTracker:
                         marker.scale.y = 0.2
                         marker.scale.z = 1.2
                         marker.pose.position.z = 0.8
+                        marker.pose.orientation.w=1.0
                         self.marker_pub.publish(marker)  
 
                         # Sphere for head shape                        

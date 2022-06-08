@@ -265,6 +265,7 @@ private:
       m.pose.position.x = leg.position.x ;
       m.pose.position.y = leg.position.y;
       m.pose.position.z = 0.2;
+      m.pose.orientation.w = 1.0;
       m.scale.x = 0.13;
       m.scale.y = 0.13;
       m.scale.z = 0.13;

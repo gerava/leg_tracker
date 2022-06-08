@@ -29,6 +29,7 @@
     --clock 
     --rate=1.0
     -s 0
+    -l
     $(find leg_tracker)/rosbags/demos/demo_moving_super_crowded.bag"/>
   <param name="use_sim_time" value="true" />
     
