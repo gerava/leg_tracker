@@ -198,7 +198,7 @@ class KalmanMultiTracker:
 
         # ROS subscribers         
         self.detected_clusters_sub = rospy.Subscriber('detected_leg_clusters', LegArray, self.detected_clusters_callback)      
-        self.local_map_sub = rospy.Subscriber('map', OccupancyGrid, self.local_map_callback)
+        self.local_map_sub = rospy.Subscriber('local_map', OccupancyGrid, self.local_map_callback)
 
         rospy.spin() # So the node doesn't immediately shut down
                     
