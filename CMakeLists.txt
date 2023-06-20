@@ -1,7 +1,9 @@
 cmake_minimum_required(VERSION 2.8.3)
 project(leg_tracker)
 
-set(CMAKE_CXX_FLAGS "-std=c++11")
+set(CMAKE_CXX_FLAGS "-std=c++11 -DNDEBUG -fPIC")
+set(OpenCV_DIR "/usr/lib/aarch64-linux-gnu/cmake/opencv4")
+
 find_package(Boost REQUIRED system thread)
 include_directories(${Boost_INCLUDE_DIRS})
 link_directories(${Boost_LIBRARY_DIRS})
@@ -22,6 +24,8 @@ find_package(catkin REQUIRED COMPONENTS
 )
 
 find_package(OpenCV 4 REQUIRED)
+message(STATUS "OpenCV_DIR: ${OpenCV_DIR}")
+
 
 add_message_files(
   FILES
@@ -46,6 +50,7 @@ catkin_package(
 include_directories(
 	INCLUDE include
 	${catkin_INCLUDE_DIRS}
+        ${OpenCV_INCLUDE_DIRS}
 )
 
 
@@ -59,6 +64,7 @@ add_executable(
 target_link_libraries(
   detect_leg_clusters 
   ${catkin_LIBRARIES}
+  ${OpenCV_LIBRARIES}
 )
 
 
@@ -70,6 +76,7 @@ add_executable(
 target_link_libraries(
   local_occupancy_grid_mapping 
   ${catkin_LIBRARIES}
+  ${OpenCV_LIBRARIES}
 )
 
 
@@ -81,6 +88,7 @@ add_executable(
 target_link_libraries(
   extract_positive_training_clusters
   ${catkin_LIBRARIES}
+  ${OpenCV_LIBRARIES}
 )
 
 
@@ -93,6 +101,7 @@ add_executable(
 target_link_libraries(
   train_leg_detector
   ${catkin_LIBRARIES}
+  ${OpenCV_LIBRARIES}
 )
 
 add_dependencies(local_occupancy_grid_mapping ${PROJECT_NAME}_generate_messages_cpp)
